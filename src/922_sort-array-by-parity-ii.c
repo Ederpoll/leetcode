@@ -1,5 +1,5 @@
 #include <stdio.h>
-void swap(int *a, int *b)
+void swap(int* a, int* b)
 {
     int tmp = *a;
     *a = *b;
@@ -50,19 +50,15 @@ int *sortArrayByParityII(int *A, int ASize, int *returnSize)
 
 // 双指针法
 
-int *sortArrayByParityII(int *A, int ASize, int *returnSize)
+int* sortArrayByParityII(int* A, int ASize, int* returnSize)
 {
     *returnSize = ASize;
     int i = 0;
     int j = 1;
-    for (; i < ASize; i += 2)
-    {
-        if (A[i] % 2)
-        {
-            while (j < ASize)
-            {
-                if (A[j] % 2 == 0)
-                {
+    for (; i < ASize; i += 2) {
+        if (A[i] % 2) {
+            while (j < ASize) {
+                if (A[j] % 2 == 0) {
                     swap(A + i, A + j);
                     break;
                 }

@@ -1,37 +1,33 @@
 #include <stdio.h>
-struct ListNode
-{
+struct ListNode {
     int val;
-    struct ListNode *next;
+    struct ListNode* next;
 };
 
-struct ListNode *removeNthFromEnd(struct ListNode *head, int n)
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n)
 {
-    if (!head)
-    {
+    if (!head) {
         return head;
     }
-    struct ListNode *dummy = (struct ListNode *)malloc(sizeof(struct ListNode));
+    struct ListNode* dummy = (struct ListNode*)malloc(sizeof(struct ListNode));
     dummy->val = 0;
     dummy->next = head;
-    struct ListNode *first = head;
-    struct ListNode *second = dummy;
+    struct ListNode* first = head;
+    struct ListNode* second = dummy;
 
     int m = n;
-    while (m > 0)
-    {
+    while (m > 0) {
         first = first->next;
         m--;
     }
 
-    while (first != NULL)
-    {
+    while (first != NULL) {
         first = first->next;
         second = second->next;
     }
 
     second->next = second->next->next;
-    struct ListNode *ans = dummy->next;
+    struct ListNode* ans = dummy->next;
     free(dummy);
     return ans;
 }
