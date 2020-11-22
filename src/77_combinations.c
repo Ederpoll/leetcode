@@ -14,13 +14,38 @@ long long getCnt(int n, int k)
     return ans;
 }
 
+void dfs(int cur, int n, int k, int* returnSize, int** result, int* tmp,
+    int tmpSize)
+{
+    if (tmpSize + n - cur + 1 < k) {
+        return;
+    }
+
+    if (tmpSize == k) {
+        int* ans = (int*)malloc(sizeof(int) * k);
+        memcpy(ans, tmp, sizeof(int) * k);
+        result[(*returnSize)++] = ans;
+        return;
+    }
+
+    tmp[tmpSize++] = cur;
+    dfs(cur + 1, n, k, returnSize, result, tmp, tmpSize);
+    tmpSize--;
+    dfs(cur + 1, n, k, returnSize, result, tmp, tmpSize);
+}
 int** combine(int n, int k, int* returnSize, int** returnColumnSizes)
 {
     int cnt = getCnt(n, k);
     int** result = (int**)malloc(sizeof(int*) * cnt);
-    int* tmp = (int*)malloc(sizeof(int) * k);
+    int* tmp = (int*)calloc(k, sizeof(int));
+    *returnColumnSizes = (int*)malloc(sizeof(int) * cnt);
+    for (int i = 0; i < cnt; i++) {
+        (*returnColumnSizes)[i] = k;
+    }
 
-    return NULL;
+    *returnSize = 0;
+    dfs(1, n, k, returnSize, result, tmp, 0);
+    return result;
 }
 
 int main()

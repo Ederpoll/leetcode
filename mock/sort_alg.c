@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+void swap(int* a, int* b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
 void bubleSort(int* nums, int numsSize)
 {
     for (int i = 0; i < numsSize; i++) {
@@ -82,12 +89,50 @@ void mergeSort(int* nums, int numsSize)
     return mergeSortChild(nums, numsSize, 0, numsSize - 1);
 }
 
+int partiton(int* nums, int left, int right)
+{
+    int i = left;
+    int val = nums[right];
+    int j;
+
+    for (j = left; j <= right - 1; j++) {
+        if (nums[j] < val) {
+            swap(nums + i, nums + j);
+            i++;
+        }
+    }
+
+    swap(nums + i, nums + right);
+    return i;
+}
+int randomPartition(int* nums, int left, int right)
+{
+    int i = rand() % (right - left + 1);
+    swap(nums + left + i, nums + right);
+    return partiton(nums, left, right);
+}
+void quickSortChild(int* nums, int left, int right)
+{
+    if (left >= right) {
+        return;
+    }
+
+    int p = randomPartition(nums, left, right);
+    quickSortChild(nums, left, p - 1);
+    quickSortChild(nums, p + 1, right);
+}
+void quickSort(int* nums, int numsSize)
+{
+    return quickSortChild(nums, 0, numsSize - 1);
+}
+
 int main()
 {
     int nums[5] = { 1, -1, 2, 4, 3 };
     //bubleSort(nums, 5);
     //insertSort(nums, 5);
-    mergeSort(nums, 5);
+    //mergeSort(nums, 5);
+    quickSort(nums, 5);
     for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
         printf("%d\n", nums[i]);
     }
