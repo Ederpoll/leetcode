@@ -126,13 +126,37 @@ void quickSort(int* nums, int numsSize)
     return quickSortChild(nums, 0, numsSize - 1);
 }
 
+void heapify(int* nums, int numsSize)
+{
+    for (int i = 0; i < numsSize; i++) {
+        int cur = i;
+        int father = (i - 1) / 2;
+        while (father >= 0 && nums[cur] > nums[father]) {
+            swap(nums + cur, nums + father);
+            cur = father;
+            father = (father - 1) / 2;
+        }
+    }
+}
+void heapSort(int* nums, int numsSize)
+{
+    // 1.构建堆
+    heapify(nums, numsSize);
+
+    // 交换每个元素
+    for (int i = numsSize - 1; i >= 0; i--) {
+        swap(nums + i, nums);
+        heapify(nums, i);
+    }
+}
 int main()
 {
     int nums[5] = { 1, -1, 2, 4, 3 };
     //bubleSort(nums, 5);
     //insertSort(nums, 5);
     //mergeSort(nums, 5);
-    quickSort(nums, 5);
+    //quickSort(nums, 5);
+    heapSort(nums, 5);
     for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
         printf("%d\n", nums[i]);
     }
