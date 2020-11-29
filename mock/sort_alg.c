@@ -151,12 +151,12 @@ void heapSort(int* nums, int numsSize)
 }
 int main()
 {
-    int nums[5] = { 1, -1, 2, 4, 3 };
+    int nums[5] = { 2, 2, 2, 2, 2 };
     //bubleSort(nums, 5);
     //insertSort(nums, 5);
     //mergeSort(nums, 5);
-    //quickSort(nums, 5);
-    heapSort(nums, 5);
+    quickSort(nums, 5);
+    //heapSort(nums, 5);
     for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
         printf("%d\n", nums[i]);
     }
