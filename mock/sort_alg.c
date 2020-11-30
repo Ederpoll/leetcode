@@ -151,7 +151,7 @@ void heapSort(int* nums, int numsSize)
 }
 int main()
 {
-    int nums[5] = { 2, 2, 2, 2, 2 };
+    int nums[5] = { -1, -8, 5, 9, 1 };
     //bubleSort(nums, 5);
     //insertSort(nums, 5);
     //mergeSort(nums, 5);
