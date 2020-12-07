@@ -42,7 +42,7 @@ void insertSort(int* nums, int numsSize)
 
 void merge(int* nums, int numsSize, int left, int mid, int right)
 {
-    int* tmp = (int*)malloc(sizeof(int) * numsSize);
+    int* tmp = (int*)malloc(sizeof(int) * (right - left + 1));
 
     int i = left;
     int j = mid + 1;
@@ -63,9 +63,10 @@ void merge(int* nums, int numsSize, int left, int mid, int right)
         tmp[n++] = nums[j++];
     }
 
-    for (int k = 0; k < numsSize; k++) {
-        nums[k] = tmp[k];
+    for (int m = left, l = 0; m <= right; m++) {
+        nums[m] = tmp[l++];
     }
+
     free(tmp);
     tmp = NULL;
     return;
@@ -154,8 +155,8 @@ int main()
     int nums[5] = { -1, -8, 5, 9, 1 };
     //bubleSort(nums, 5);
     //insertSort(nums, 5);
-    //mergeSort(nums, 5);
-    quickSort(nums, 5);
+    mergeSort(nums, 5);
+    //quickSort(nums, 5);
     //heapSort(nums, 5);
     for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
         printf("%d\n", nums[i]);
