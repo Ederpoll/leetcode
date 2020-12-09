@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 int uniquePaths(int m, int n)
 {
     int** dp = malloc(sizeof(int*) * m);
@@ -22,4 +22,13 @@ int uniquePaths(int m, int n)
     }
 
     return dp[m - 1][n - 1];
+}
+
+int main()
+{
+    int m = 3;
+    int n = 7;
+    int result = uniquePaths(m, n);
+    printf("%d\n", result);
+    return 0;
 }
