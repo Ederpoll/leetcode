@@ -1,2 +1,3 @@
 .vscode
-*/*.exe
+src/c/*.exe
+src/cpp/*.exe
